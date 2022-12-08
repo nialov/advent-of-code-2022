@@ -97,7 +97,8 @@ def update_filetree(
     if len(location) == 0:
         if isinstance(addition, DirectoryName):
             # New directory
-            file_tree[addition] = Directory()
+            if addition not in file_tree:
+                file_tree[addition] = Directory()
             return file_tree, location
         elif isinstance(addition, File):
             file_tree.files[addition.name] = addition.size
